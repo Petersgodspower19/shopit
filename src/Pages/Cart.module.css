@@ -2,8 +2,9 @@
     margin-top: 1rem;
     margin-bottom: 1rem;
     width: 100px;
-    position: absolute;
+    position: fixed;
     right: 15px;
+    z-index: 1;
 }
 
 .cart{

@@ -3,11 +3,11 @@ import PageNav from '../Components/PageNav'
 import CheckOutForm from '../Components/CheckOutForm'
 import styles from "./CheckOut.module.css"
 
-function Checkout({cart, handleSubmit, newCart}) {
+function Checkout({cart, handleSubmit, newCart, length}) {
   const total  = cart.reduce((acc, item) => acc + parseFloat(item.newprice), 0);
   return (
     <div>
-     <PageNav heading="Checkout" newCart={newCart}/> 
+     <PageNav heading="Checkout" newCart={newCart} length={length}/> 
      <div className={styles.checkout}>
      <div className={styles.items}>
       

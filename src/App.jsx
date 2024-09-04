@@ -155,6 +155,7 @@ function App() {
               newCart={newCart} 
               cart={state.cart} 
               handleSubmit={handleSubmit} 
+              length={state.cart.length}
             />}  
           />
         </Routes>
