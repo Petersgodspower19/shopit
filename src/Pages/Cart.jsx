@@ -1,18 +1,27 @@
 import React from 'react';
 import PageNav from '../Components/PageNav';
 import styles from "./Cart.module.css";
+import { useNavigate } from 'react-router-dom';
 
-function Cart({ cart, clearCart, newCart, payAndCheck,readytoPay, remove, setNewCart  }) {
+function Cart({ cart, clearCart, newCart, payAndCheck, readytoPay, remove, setNewCart }) {
   const totalAmount = cart.reduce((acc, item) => acc + parseFloat(item.newprice), 0);
-  // let totalCost = totalAmount.toFixed(2)
-  if(cart.length === 0) {
-    setNewCart(false)
-    }
+  const navigate = useNavigate(); 
+
+  if (cart.length === 0) {
+    setNewCart(false);
+  }
+
+  function handleNavigationToCheckout() {
+    navigate('/checkout');
+  }
+
   return (
     <div>
       <PageNav heading="Your Cart" newCart={newCart} readytoPay={readytoPay} />
+      <button className={styles.proceed} onClick={handleNavigationToCheckout}>
+        Proceed to Checkout
+      </button>
       <div className={styles.cart}>
-        
         {cart.length === 0 ? (
           <p>Your cart is empty.</p>
         ) : (
@@ -25,8 +34,7 @@ function Cart({ cart, clearCart, newCart, payAndCheck,readytoPay, remove, setNew
                   <p>Price: ${item.newprice}</p>
                   <br />
                   <div className={styles.buttons}>
-                  <button onClick={() => payAndCheck(item)}>Proceed to Checkout</button>
-                  <button className='remove' onClick={() => remove(item)}>Remove</button>
+                    <button className='remove' onClick={() => remove(item)}>Remove</button>
                   </div>
                 </div>
               </div>

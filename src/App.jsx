@@ -137,7 +137,7 @@ function App() {
     <Router>
       <div>
         <Routes>
-          <Route path="/" element={<Home newCart={newCart} readytoPay={readytoPay} />} />
+          <Route path="/" element={<Home newCart={newCart} readytoPay={readytoPay} addItem={addItem} />} />
 
           <Route 
             path="/products" 
@@ -160,7 +160,7 @@ function App() {
             element={<Checkout 
               newCart={newCart} 
               readytoPay={readytoPay} 
-              items={state.itemsReadyForPayment} 
+              cart={state.cart} 
               handleSubmit={handleSubmit} 
               setreadytoPay={setReadyToPay}
             />}  

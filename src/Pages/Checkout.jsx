@@ -3,9 +3,9 @@ import PageNav from '../Components/PageNav'
 import CheckOutForm from '../Components/CheckOutForm'
 import styles from "./CheckOut.module.css"
 
-function Checkout({items, handleSubmit, newCart, readytoPay, setreadytoPay}) {
-  const total  = items.reduce((acc, item) => acc + parseFloat(item.newprice), 0);
-  if (items.length === 0) {
+function Checkout({cart, handleSubmit, newCart, readytoPay, setreadytoPay}) {
+  const total  = cart.reduce((acc, item) => acc + parseFloat(item.newprice), 0);
+  if (cart.length === 0) {
     setreadytoPay(false)
   }
   return (
@@ -22,7 +22,7 @@ function Checkout({items, handleSubmit, newCart, readytoPay, setreadytoPay}) {
                 <th>Price</th>
             </tr>
           </thead>
-            {items.map(item => (
+            {cart.map(item => (
               <tbody>
             <tr>
             
