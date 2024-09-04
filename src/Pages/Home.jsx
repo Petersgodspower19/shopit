@@ -6,7 +6,7 @@ import HomeProducts from '../Components/HomeProducts'
 function Home({newCart,  addItem}) {
   return (
     <div >
-      <PageNav heading="Home" newCart={newCart} readytoPay={readytoPay}/>
+      <PageNav heading="Home" newCart={newCart}/>
       <div className={styles.home}>
       <h2>Featured Products</h2>
       <HomeProducts addItem={addItem} />

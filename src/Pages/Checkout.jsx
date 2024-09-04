@@ -7,7 +7,7 @@ function Checkout({cart, handleSubmit, newCart}) {
   const total  = cart.reduce((acc, item) => acc + parseFloat(item.newprice), 0);
   return (
     <div>
-     <PageNav heading="Checkout" newCart={newCart} readytoPay={readytoPay}/> 
+     <PageNav heading="Checkout" newCart={newCart}/> 
      <div className={styles.checkout}>
      <div className={styles.items}>
       

@@ -2,7 +2,7 @@ import React from 'react'
 import { NavLink } from 'react-router-dom'
 import styles from "./PageNav.module.css"
 
-function PageNav({heading, newCart, readytoPay}) {
+function PageNav({heading, newCart}) {
   return (
     <nav>
         <h1>{heading}</h1>
