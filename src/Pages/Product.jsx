@@ -2,10 +2,10 @@ import PageNav from "../Components/PageNav";
 import ProductsPageComponents from "../Components/ProductsPageComponents";
 import styles from "./Product.module.css";
 
-function Product({ addItem, newCart, readytoPay, handleChange, homeProducts }) {
+function Product({ addItem, newCart,  handleChange, homeProducts, length }) {
   return (
     <div>
-      <PageNav heading="Products" newCart={newCart} readytoPay={readytoPay} />
+      <PageNav heading="Products" newCart={newCart} length={length} />
       <div className={styles.product}>
         <article>
           <h2>Our Available Products</h2>

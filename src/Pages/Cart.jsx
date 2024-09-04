@@ -3,7 +3,7 @@ import PageNav from '../Components/PageNav';
 import styles from "./Cart.module.css";
 import { useNavigate } from 'react-router-dom';
 
-function Cart({ cart, clearCart, newCart, payAndCheck, readytoPay, remove, setNewCart }) {
+function Cart({ cart, clearCart, newCart, payAndCheck, readytoPay, remove, setNewCart, length }) {
   const totalAmount = cart.reduce((acc, item) => acc + parseFloat(item.newprice), 0);
   const navigate = useNavigate(); 
 
@@ -17,7 +17,7 @@ function Cart({ cart, clearCart, newCart, payAndCheck, readytoPay, remove, setNe
 
   return (
     <div>
-      <PageNav heading="Your Cart" newCart={newCart} readytoPay={readytoPay} />
+      <PageNav heading="Your Cart" newCart={newCart} readytoPay={readytoPay} length={length} />
       <button className={styles.proceed} onClick={handleNavigationToCheckout}>
         Proceed to Checkout
       </button>

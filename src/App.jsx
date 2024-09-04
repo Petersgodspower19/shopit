@@ -9,7 +9,6 @@ import homeProducts from '../itemsForSale';
 
 
 const initialCart = [];
-const initialItemsReadyForPayment = [];
 const itemsArray = homeProducts;
 
 
@@ -36,10 +35,9 @@ function reducer(state, action) {
     case "Clear":
       console.log("Cart cleared");
       return { ...state, cart: initialCart };
-      
-    case "Proceed":
-      console.log("Item added for payment:", action.payload);
-      return { ...state, itemsReadyForPayment: [...state.itemsReadyForPayment, action.payload] };
+
+      case "Submit":
+        return {...state, cart: initialCart}
       
     default:
       return state;
@@ -48,13 +46,8 @@ function reducer(state, action) {
 
 
 function App() {
-  const [state, dispatch] = useReducer(reducer, { cart: initialCart, 
-    itemsReadyForPayment: initialItemsReadyForPayment,
-     itemsArray});
-
-
+  const [state, dispatch] = useReducer(reducer, { cart: initialCart, itemsArray});
   const [newCart, setNewCart] = useState(false);
-  const [readytoPay, setReadyToPay] = useState(false);
 
   useEffect(() => {
     console.log("Current cart state:", state.cart);
@@ -83,10 +76,6 @@ function App() {
     
   }
 
-  function payAndCheck(object) {
-    dispatch({ type: "Proceed", payload: object });
-    setReadyToPay(true);
-  }
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -107,6 +96,8 @@ function App() {
       confirmButtonText: 'Thanks',
       confirmButtonColor: "#4d869c",
     })
+    dispatch({type: "Submit"})
+    setNewCart(false);
   }
   })
 
@@ -137,22 +128,25 @@ function App() {
     <Router>
       <div>
         <Routes>
-          <Route path="/" element={<Home newCart={newCart} readytoPay={readytoPay} addItem={addItem} />} />
+          <Route path="/" element={<Home newCart={newCart}  addItem={addItem}
+           length={state.cart.length} />} />
 
           <Route 
             path="/products" 
             element={<Product 
               addItem={addItem} 
-              newCart={newCart} 
-              readytoPay={readytoPay} 
+              newCart={newCart}  
               handleChange={handleChange} 
               homeProducts={state.itemsArray} 
+              length={state.cart.length}
             />} 
           />
 
           <Route path="/cart" element={<Cart cart={state.cart}
            clearCart={clearCart} newCart={newCart}
-           payAndCheck={payAndCheck} readytoPay={readytoPay} remove={removeItem}  setNewCart={setNewCart}/>} />
+          remove={removeItem} 
+           length={state.cart.length}
+           setNewCart={setNewCart}/>} />
 
 
           <Route 
