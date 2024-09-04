@@ -6,26 +6,27 @@ import Cart from './Pages/Cart';
 import Checkout from './Pages/Checkout';
 import homeProducts from '../itemsForSale';
 
-const initialCart = JSON.parse(localStorage.getItem('cart')) || [];
-const initialItemsReadyForPayment = JSON.parse(localStorage.getItem('itemsReadyForPayment')) || [];
+
+
+const initialCart = [];
+const initialItemsReadyForPayment = [];
 const itemsArray = homeProducts;
+
 
 function reducer(state, action) {
   switch (action.type) {
     case "Add":
-      const newCart = [...state.cart, action.payload];
-      localStorage.setItem('cart', JSON.stringify(newCart));
-      return { ...state, cart: newCart };
+      console.log("Item added to cart:", action.payload);
+      return { ...state, cart: [...state.cart, action.payload] };
       
     case "Remove":
-      const updatedCart = state.cart.filter(item => item.id !== action.payload.id);
-      localStorage.setItem('cart', JSON.stringify(updatedCart));
+      console.log("Item removed from cart:", action.payload);
       return { 
         ...state, 
-        cart: updatedCart 
+        cart: state.cart.filter(item => item.id !== action.payload.id) 
       };
       
-    case "Change":
+      case "Change":
       const filteredItems = homeProducts.filter(item => item.Isfor === action.payload);
       return {
         ...state,
@@ -33,18 +34,18 @@ function reducer(state, action) {
       };
 
     case "Clear":
-      localStorage.removeItem('cart');
+      console.log("Cart cleared");
       return { ...state, cart: initialCart };
       
     case "Proceed":
-      const newItemsReadyForPayment = [...state.itemsReadyForPayment, action.payload];
-      localStorage.setItem('itemsReadyForPayment', JSON.stringify(newItemsReadyForPayment));
-      return { ...state, itemsReadyForPayment: newItemsReadyForPayment };
+      console.log("Item added for payment:", action.payload);
+      return { ...state, itemsReadyForPayment: [...state.itemsReadyForPayment, action.payload] };
       
     default:
       return state;
   }
 }
+
 
 function App() {
   const [state, dispatch] = useReducer(reducer, { cart: initialCart, 
@@ -58,10 +59,6 @@ function App() {
   useEffect(() => {
     console.log("Current cart state:", state.cart);
   }, [state.cart]);
-
-  useEffect(() => {
-    console.log("Items ready for payment:", state.itemsReadyForPayment);
-  }, [state.itemsReadyForPayment]);
 
   function addItem(object) {
     dispatch({ type: "Add", payload: object });
@@ -115,8 +112,7 @@ function App() {
 
     
   }
-
-  function removeItem(object) {
+  function removeItem (object) {
     Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
