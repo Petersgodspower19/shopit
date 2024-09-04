@@ -3,7 +3,7 @@ import PageNav from '../Components/PageNav'
 import styles from "./Home.module.css"
 import HomeProducts from '../Components/HomeProducts'
 
-function Home({newCart, readytoPay, addItem}) {
+function Home({newCart,  addItem}) {
   return (
     <div >
       <PageNav heading="Home" newCart={newCart} readytoPay={readytoPay}/>

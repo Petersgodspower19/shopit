@@ -12,7 +12,6 @@ function PageNav({heading, newCart, readytoPay}) {
             <p><NavLink to="/">Home</NavLink></p>
             <p><NavLink to="/products">Products</NavLink></p>
             <p id='cart'><NavLink to="/cart"> {newCart && <span className={styles.detector}>!</span>}Cart</NavLink></p>
-            <p><NavLink to="/checkout">{readytoPay && <span className={styles.detector}>!</span>}CheckOut</NavLink></p>
        
         </div>
     </nav>

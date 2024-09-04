@@ -159,10 +159,8 @@ function App() {
             path="/checkout" 
             element={<Checkout 
               newCart={newCart} 
-              readytoPay={readytoPay} 
               cart={state.cart} 
               handleSubmit={handleSubmit} 
-              setreadytoPay={setReadyToPay}
             />}  
           />
         </Routes>

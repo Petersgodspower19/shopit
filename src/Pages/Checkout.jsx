@@ -3,11 +3,8 @@ import PageNav from '../Components/PageNav'
 import CheckOutForm from '../Components/CheckOutForm'
 import styles from "./CheckOut.module.css"
 
-function Checkout({cart, handleSubmit, newCart, readytoPay, setreadytoPay}) {
+function Checkout({cart, handleSubmit, newCart}) {
   const total  = cart.reduce((acc, item) => acc + parseFloat(item.newprice), 0);
-  if (cart.length === 0) {
-    setreadytoPay(false)
-  }
   return (
     <div>
      <PageNav heading="Checkout" newCart={newCart} readytoPay={readytoPay}/> 

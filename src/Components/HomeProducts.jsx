@@ -3,7 +3,7 @@ import homeProducts from '../../itemsForSale'
 import styles from "./HomeProducts.module.css"
 
 
-function HomeProducts() {
+function HomeProducts({addItem}) {
   return (
     <section className={styles.gridsection}>
       {homeProducts.map(product => (
@@ -14,7 +14,7 @@ function HomeProducts() {
         </article>
       <p className={styles.productDescription}>{product.description}</p>
       <article>
-        <p><button className={styles.pricebtn} data-id="${id}" disabled>
+        <p><button className={styles.pricebtn} data-id="${id}" onClick={() =>  addItem(product)}>
          ${product.newprice}
           </button></p>
         <p className={styles.oldprice}>{product.oldprice}</p>
